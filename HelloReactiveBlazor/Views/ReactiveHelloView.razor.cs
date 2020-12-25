@@ -7,8 +7,10 @@ using ReactiveUI;
 
 namespace HelloReactiveBlazor.Views {
     public partial class ReactiveHelloView {
-        public ReactiveHelloView()
-        {
+        public ReactiveHelloView() {
+            // The default RxApp.MainThreadScheduler (ui thread) doesn't work well with Blazor WASM.
+            RxApp.MainThreadScheduler = RxApp.TaskpoolScheduler;
+            
             ViewModel = new ReactiveHelloViewModel();
 
             this.WhenActivated(disposables =>

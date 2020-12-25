@@ -20,15 +20,7 @@ namespace HelloReactiveBlazor.ViewModels {
             this.WhenActivated(
                 disposables => {
                     Observable
-                        .Timer(
-                            TimeSpan.Zero,
-                            TimeSpan.FromMilliseconds(500),
-                            /*
-                            RxApp.MainThreadScheduler
-                            /*/
-                            RxApp.TaskpoolScheduler
-                            //*/
-                            )
+                        .Timer(TimeSpan.Zero, TimeSpan.FromMilliseconds(500), RxApp.MainThreadScheduler)
                         .Take(5)
                         .Do(
                             t => { Greeting = $"Hello, {t}!"; },
